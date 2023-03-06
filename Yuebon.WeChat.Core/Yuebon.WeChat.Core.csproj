@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Yuebon.WeChat</RootNamespace>
+    <Company>上海越邦網絡科技有限公司</Company>
+    <Authors>Yuebon</Authors>
+    <Product>YuebonNetCore 微信開放接口類庫</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>上海越邦網絡科技有限公司 版權所有</Copyright>
+    <Description>YuebonNetCore 微信公眾號、小程序、開放平臺接口實現類庫</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://gitee.com/yuebon/YuebonNetCore</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Version>1.1.1.9</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryUrl>https://gitee.com/yuebon/YuebonNetCore</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.3" />
+    <PackageReference Include="Senparc.WebSocket" Version="0.11.200" />
+    <PackageReference Include="Senparc.Weixin" Version="6.8.200" />
+    <PackageReference Include="Senparc.Weixin.Cache.Memcached" Version="2.7.200" />
+    <PackageReference Include="Senparc.Weixin.Cache.Redis" Version="2.9.200" />
+    <PackageReference Include="Senparc.Weixin.MP" Version="16.11.200" />
+    <PackageReference Include="Senparc.Weixin.Open" Version="4.8.200.1" />
+    <PackageReference Include="Senparc.Weixin.TenPay" Version="1.6.200.2" />
+    <PackageReference Include="Senparc.Weixin.WxOpen" Version="3.10.200.1" />
+    <PackageReference Include="Senparc.Weixin.WxOpen.Middleware" Version="0.2.200" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yuebon.NetCore\Yuebon.Commons\Yuebon.Commons.csproj" />
+  </ItemGroup>
+
+</Project>

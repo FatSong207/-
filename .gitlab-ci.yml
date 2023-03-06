@@ -1,0 +1,29 @@
+stages:
+      - build007
+     
+       
+mybuild007:
+     stage: build007
+     before_script:
+        - chcp 65001
+     script:
+        - D:\nssm-2.24\win64\nssm stop 兆基5001     
+        - dotnet build
+        - if not exist "D:\chaochi\new" mkdir D:\chaochi\new 
+        - del D:\chaochi\new\ /S /Q
+        - xcopy .\Yuebon.WebApi\bin\Debug  D:\chaochi\new\ /E
+        - del D:\chaochi\new\net5.0\wwwroot /Q
+        - cd .\VueUI
+        - dir
+        - call npm install
+        - call npm run "build:prod184"
+        - cd ..
+        - xcopy .\VueUI\dist\  D:\chaochi\new\net5.0\wwwroot\ /E
+        - if not exist "D:\chaochi\current" mkdir D:\chaochi\current
+        - if not exist "D:\chaochi\old" mkdir D:\chaochi\old
+        - rd d:\chaochi\old /q /s   
+        - call move D:\chaochi\current D:\chaochi\old
+        - call move D:\chaochi\new D:\chaochi\current
+        - D:\nssm-2.24\win64\nssm start 兆基5001
+     tags:
+        - build7

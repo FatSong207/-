@@ -1,0 +1,784 @@
+﻿<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yuebon.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:Yuebon.AspNetCore.Models.ErrCode">
+            <summary>
+            錯誤代碼描述
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err0">
+            <summary>
+            請求成功
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.successCode">
+            <summary>
+            請求成功代碼0
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err1">
+            <summary>
+            請求失敗
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.failCode">
+            <summary>
+            請求失敗代碼1
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err40001">
+            <summary>
+            獲取access_token時AppID或AppSecret錯誤。請開發者認真比對appid和AppSecret的正確性，或查看是否正在為恰當的應用調用接口
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err40002">
+            <summary>
+            調用接口的服務器URL地址不正確，請聯系供應商進行設置
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err40003">
+            <summary>
+            請確保grant_type字段值為client_credential
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err40004">
+            <summary>
+            不合法的憑證類型
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err40005">
+            <summary>
+            用戶令牌accesstoken超時失效
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err40006">
+            <summary>
+            您未被授權使用該功能，請重新登錄試試或聯系管理員進行處理
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err40007">
+            <summary>
+            傳遞參數出現錯誤
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err43001">
+            <summary>
+            更新數據失敗
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err43002">
+            <summary>
+            更新數據失敗
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err43003">
+            <summary>
+            物理刪除數據失敗
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err50001">
+            <summary>
+            該用戶不存在
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err50002">
+            <summary>
+            該用戶已存在
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err50003">
+            <summary>
+            會員註冊失敗
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Models.ErrCode.err60001">
+            <summary>
+            查詢數據不存在
+            </summary>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Common.MyApiException">
+            <summary>
+            自定義異常信息
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.Common.MyApiException.Msg">
+            <summary>
+            異常消息
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.Common.MyApiException.Success">
+            <summary>
+            成功狀態
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.Common.MyApiException.ErrCode">
+            <summary>
+            提示代碼
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Common.MyApiException.#ctor(System.String)">
+            <summary>
+            異常
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Common.MyApiException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="errcode"></param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Common.MyApiException.#ctor(System.String,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="success"></param>
+            <param name="errcode"></param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Controllers.CheckController">
+            <summary>
+             sso驗證
+            <para>其他站點通過后臺Post來認證</para>
+            <para>或使用靜態類Yuebon.Security.Application.SSO.AuthHelper訪問</para>
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.CheckController.GetStatus(System.String,System.String)">
+            <summary>
+            檢驗token是否有效
+            </summary>
+            <param name="token">The token.</param>
+            <param name="requestid">請求Id備用參數.</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.CheckController.GetUser(System.String,System.String)">
+            <summary>
+            根據token獲取用戶及用戶可訪問的所有資源
+            </summary>
+            <param name="token"></param>
+            <param name="requestid">備用參數.</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.CheckController.GetUserName(System.String,System.String)">
+            <summary>
+            根據token獲取用戶名稱
+            </summary>
+            <param name="token"></param>
+            <param name="requestid">備用參數.</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.CheckController.Login(Yuebon.AspNetCore.SSO.PassportLoginRequest)">
+            <summary>
+            登錄接口
+            </summary>
+            <param name="request">登錄參數</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.CheckController.Logout(System.String,System.String)">
+            <summary>
+            注銷登錄
+            </summary>
+            <param name="token"></param>
+            <param name="requestid">備用參數.</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.CheckController.GetToken">
+            <summary>
+            獲取token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Controllers.FilesController">
+            <summary>
+            文件上傳
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.FilesController.#ctor(Yuebon.Security.Application.UploadFileApp,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.FilesController.Upload(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+             單文件上傳接口
+            </summary>
+            <param name="files"></param>
+            <returns>服務器存儲的文件信息</returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.FilesController.Uploads(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+             批量上傳文件接口
+            </summary>
+            <param name="files"></param>
+            <returns>服務器存儲的文件信息</returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.FilesController.Adds(Microsoft.AspNetCore.Http.IFormFileCollection,System.String,System.String)">
+            <summary>
+            批量上傳文件
+            </summary>
+            <param name="files">文件</param>
+            <param name="belongApp">所屬應用，如文章article</param>
+            <param name="belongAppId">所屬應用ID，如文章id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.FilesController.Add(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
+            <summary>
+            單個上傳文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.FilesController.UploadFile(System.String,System.Byte[])">
+            <summary>
+            實現文件上傳到服務器保存，并生成縮略圖
+            </summary>
+            <param name="fileName">文件名稱</param>
+            <param name="fileBuffers">文件字節流</param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Controllers.IdentityController">
+            <summary>
+            Identity控制器
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.IdentityController.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Controllers.LoginController">
+            <summary>
+            用戶登錄接口控制器
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.LoginController.#ctor(Yuebon.Security.IServices.IUserService)">
+            <summary>
+            構造函數注入服務
+            </summary>
+            <param name="_iService"></param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.LoginController.GetCheckUser(System.String,System.String,System.String)">
+            <summary>
+            登錄驗證用戶
+            </summary>
+            <param name="username">用戶名</param>
+            <param name="password">密碼</param>
+            <param name="url">返回Url</param>
+            <returns>返回用戶User對象</returns>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Controllers.TokenController">
+            <summary>
+            Token令牌接口控制器
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.TokenController.#ctor(Yuebon.Security.IServices.IAPPService,Yuebon.Commons.Options.JwtOption)">
+            <summary>
+            
+            </summary>
+            <param name="_iAPPService"></param>
+            <param name="jwtModel"></param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.TokenController.Get(System.String,System.String,System.String)">
+            <summary>
+            根據應用信息獲得token令牌
+            </summary>
+            <param name="grant_type">獲取access_token填寫client_credential</param>
+            <param name="appid">用戶唯一憑證，應用AppId</param>
+            <param name="secret">應用密鑰AppSecret</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.TokenController.CheckToken(System.String)">
+            <summary>
+            驗證token的合法性。
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.TokenController.RefreshToken(System.String)">
+            <summary>
+            刷新token。
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.TokenController.ToJsonContent(System.Object)">
+            <summary>
+            把object對象轉換為ContentResult
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Controllers.ApiController">
+            <summary>
+            WebApi控制器基類
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Controllers.ApiController.CurrentUser">
+            <summary>
+            當前登錄的用戶屬性
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.ApiController.ToJsonContent(System.Object)">
+            <summary>
+            把object對象轉換為ContentResult
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.ApiController.CheckToken(System.String)">
+            <summary>
+            驗證token的合法性。如果不合法，返回MyApiException異常
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.ApiController.GetToken">
+            <summary>
+            獲取token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Controllers.AreaApiController`2">
+            <summary>
+            基本控制器，增刪改查
+            </summary>
+            <typeparam name="T">實體類型</typeparam>
+            <typeparam name="TServicen">Service類型</typeparam>
+        </member>
+        <member name="F:Yuebon.AspNetCore.Controllers.AreaApiController`2.iService">
+            <summary>
+            服務接口
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.#ctor(`1)">
+            <summary>
+            構造方法
+            </summary>
+            <param name="iService"></param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.OnBeforeInsert(`0)">
+            <summary>
+            在插入數據前對數據的修改操作
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.OnBeforeUpdate(`0)">
+            <summary>
+            在更新數據前對數據的修改操作
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.OnBeforeSoftDelete(`0)">
+            <summary>
+            在軟刪除數據前對數據的修改操作
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.InsertAsync(`0)">
+            <summary>
+            異步新增數據
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.UpdateAsync(`0,System.String)">
+            <summary>
+            異步更新數據
+            </summary>
+            <param name="info"></param>
+            <param name="id">主鍵Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.Delete(System.String)">
+            <summary>
+            物理刪除
+            </summary>
+            <param name="id">主鍵Id</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.DeleteAsync(System.String)">
+            <summary>
+            異步物理刪除
+            </summary>
+            <param name="id">主鍵Id</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.DeleteSoft(System.String,System.String)">
+            <summary>
+            軟刪除信息
+            </summary>
+            <param name="id">主鍵Id</param>
+            <param name="bltag">刪除標識，默認為1：即設為刪除,0：未刪除</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.DeleteSoftAsync(System.String,System.String)">
+            <summary>
+            異步軟刪除信息
+            </summary>
+            <param name="id">主鍵Id</param>
+            <param name="bltag">刪除標識，默認為1：即設為刪除,0：未刪除</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.SetEnabledMark(System.String,System.String)">
+            <summary>
+            設為數據有效性
+            </summary>
+            <param name="id">主鍵Id</param>
+            <param name="bltag">有效標識，默認為1：即設為無效,0：有效</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.SetEnabledMarkAsync(System.String,System.String)">
+            <summary>
+            異步設為數據有效性
+            </summary>
+            <param name="id">主鍵Id</param>
+            <param name="bltag">有效標識，默認為1：即設為無效,0：有效</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.GetById(System.String)">
+            <summary>
+            根據主鍵Id獲取一個對象信息
+            </summary>
+            <param name="id">主鍵Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.FindWithPager(`0)">
+            <summary>
+            根據條件查詢數據庫,并返回對象集合(用于分頁數據顯示)
+            </summary>
+            <param name="info">info</param>
+            <returns>指定對象的集合</returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.GetPagerInfo">
+            <summary>
+            根據Request參數獲取分頁對象數據
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Controllers.AreaApiController`2.GetPagerCondition(System.Boolean)">
+            <summary>
+            獲取分頁操作的查詢條件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.Filter.ExceptionHandlingAttribute">
+            <summary>
+            表示一個特性，該特性用于全局捕獲程序運行異常信息。
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.Filter.ExceptionHandlingAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.Filter.RemoveVersionFromParameter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.Filter.RemoveVersionFromParameter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.Filter.SwaggerFileUploadFilter">
+            <summary>
+            Swagger 上傳文件過濾器
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.Filter.SwaggerFileUploadFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            應用過濾器
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.HiddenApiAttribute">
+            <summary> 
+            隱藏接口，不生成到swagger文檔展示 
+            </summary> 
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.HiddenApiFilter">
+            <summary>
+            隱藏接口，不生成到swagger文檔展示 
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.HiddenApiFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            實現Apply方法
+            </summary>
+            <param name="swaggerDoc"></param>
+            <param name="documentFilterContext"></param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.YuebonAuthorizationFilter">
+            <summary>
+            功能權限授權驗證
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.YuebonAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.YuebonAuthorizeAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.Mvc.YuebonAuthorizeAttribute.Permission">
+            <summary>
+            權限
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.YuebonAuthorizeAttribute.#ctor(System.String)">
+            <summary>
+            構造函數
+            </summary>
+            <param name="permission"></param>
+        </member>
+        <member name="T:Yuebon.AspNetCore.Mvc.TokenProvider">
+            <summary>
+            Token令牌提供類
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.TokenProvider.#ctor">
+            <summary>
+            構造函數
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.TokenProvider.#ctor(Yuebon.Commons.Options.JwtOption)">
+            <summary>
+            構造函數，初花jwtmodel
+            </summary>
+            <param name="jwtModel"></param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.TokenProvider.GenerateToken(System.String,System.String,System.String)">
+            <summary>
+            直接通過appid和加密字符串獲取訪問令牌接口
+            </summary>
+            <param name="grant_type">獲取access_token填寫client_credential</param>
+            <param name="appid">用戶唯一憑證</param>
+            <param name="secret">用戶唯一憑證密鑰，即appsecret</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.TokenProvider.ValidateToken(System.String)">
+            <summary>
+            檢查用戶的Token有效性
+            </summary>
+            <param name="token">token令牌</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.Mvc.TokenProvider.LoginToken(Yuebon.Security.Models.User,System.String)">
+            <summary>
+            根據用戶獲取token
+            </summary>
+            <param name="userLogOn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.AuthHelper.GetToken">
+            <summary>
+            根據URL中的Token參數或Cookie獲取token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.AuthHelper.CheckLogin(System.String,System.String)">
+            <summary>
+            檢查用戶登錄狀態
+            </summary>
+            <param name="token">token</param>
+            <param name="remark">備注信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.AuthHelper.CheckLogin(System.String)">
+            <summary>
+            檢查用戶登錄狀態
+            <para>通過URL中的Token參數或Cookie中的Token</para>
+            </summary>
+            <param name="remark">備注信息</param>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.AuthHelper.GetCurrentUser(System.String)">
+            <summary>
+            獲取當前登錄的用戶信息
+            <para>通過URL中的Token參數或Cookie中的Token</para>
+            </summary>
+            <param name="remark">The remark.</param>
+            <returns>LoginUserVM.</returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.AuthHelper.GetUserName(System.String)">
+            <summary>
+            獲取當前登錄的用戶名
+            <para>通過URL中的Token參數或Cookie中的Token</para>
+            </summary>
+            <param name="remark">The remark.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.AuthHelper.Login(System.String,System.String,System.String,System.String)">
+            <summary>
+            登錄接口
+            </summary>
+            <param name="appKey">應用程序key.</param>
+            <param name="appSecret">應用程序Secret.</param>
+            <param name="username">用戶名</param>
+            <param name="pwd">密碼</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.AuthHelper.Logout">
+            <summary>
+            注銷
+            </summary>
+        </member>
+        <member name="T:Yuebon.AspNetCore.SSO.LoginResult">
+            <summary>
+            登錄返回結果
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.SSO.LoginResult.ReturnUrl">
+            <summary>
+            跳轉Url
+            </summary>
+        </member>
+        <member name="F:Yuebon.AspNetCore.SSO.LoginResult.AccessToken">
+            <summary>
+            token
+            </summary>
+        </member>
+        <member name="T:Yuebon.AspNetCore.SSO.PassportLoginRequest">
+            <summary>
+            系統登錄請求實體
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.PassportLoginRequest.Account">
+            <summary>
+            帳號
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.PassportLoginRequest.Password">
+            <summary>
+            密碼
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.PassportLoginRequest.SystemCode">
+            <summary>
+            系統編碼
+            </summary>
+        </member>
+        <member name="M:Yuebon.AspNetCore.SSO.SSOAuthHelper.Validate(Yuebon.AspNetCore.SSO.PassportLoginRequest)">
+            <summary>
+            用戶登錄驗證，主要用管理后臺、H5和App應用用戶登錄
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.TokenModel.Access_Token">
+            <summary>
+            獲取到的憑證值
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.TokenModel.Expires_In">
+            <summary>
+            獲取到的憑證值
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.UserId">
+            <summary>
+            用戶ID
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.Account">
+            <summary>
+            用戶帳號
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.Name">
+            <summary>
+            用戶名
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.NickName">
+            <summary>
+            昵稱
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.HeadIcon">
+            <summary>
+            頭像
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.Gender">
+            <summary>
+            性別
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.MemberGradeId">
+            <summary>
+            頭像
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.ReferralUserId">
+            <summary>
+            上級推廣員
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.CreateTime">
+            <summary>
+            註冊時間
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.Role">
+            <summary>
+            角色編碼，多個角色，使用“,”分格
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.SSO.YuebonCurrentUser.OtherOpenObj">
+            <summary>
+            其他對象
+            </summary>
+        </member>
+        <member name="T:Yuebon.AspNetCore.UI.SearchModel">
+            <summary>
+            查詢條件公共實體類
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.UI.SearchModel.Keywords">
+            <summary>
+            關鍵詞
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.UI.SearchModel.Order">
+            <summary>
+            排序方式 默認asc 
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.UI.SearchModel.Sort">
+            <summary>
+            排序字段 默認Id
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.UI.SearchModel.PageNo">
+            <summary>
+            第幾頁
+            </summary>
+        </member>
+        <member name="P:Yuebon.AspNetCore.UI.SearchModel.PageSize">
+            <summary>
+            每頁顯示數量
+            </summary>
+        </member>
+        <member name="T:Yuebon.WebApi.Common.SessionObject">
+            <summary>
+            SessionObject是登錄之后，給客戶端傳回的對象
+            </summary>
+        </member>
+        <member name="P:Yuebon.WebApi.Common.SessionObject.SessionKey">
+            <summary>
+            SessionKey
+            </summary>
+        </member>
+        <member name="P:Yuebon.WebApi.Common.SessionObject.LogonUser">
+            <summary>
+            當前登錄的用戶的信息
+            </summary>
+        </member>
+    </members>
+</doc>

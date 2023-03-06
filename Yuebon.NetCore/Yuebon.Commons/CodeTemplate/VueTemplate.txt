@@ -1,0 +1,373 @@
+﻿<template>
+  <div class="app-container">
+    <div class="filter-container">
+      <el-card>
+        <el-form
+          ref="searchform"
+          :inline="true"
+          :model="searchform"
+          class="demo-form-inline"
+          size="small"
+        >
+          <el-form-item label="名稱：">
+            <el-input v-model="searchform.keywords" clearable placeholder="名稱" />
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="handleSearch()">查詢</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </div>
+    <el-card>
+      <div class="list-btn-container"> 
+        <el-button-group>
+          <el-button v-hasPermi="['{ModelTypeName}/Add']" type="primary" icon="el-icon-plus" size="small" @click="ShowEditOrViewDialog()">新增</el-button>
+          <el-button v-hasPermi="['{ModelTypeName}/Edit']" type="primary" icon="el-icon-edit" class="el-button-modify" size="small" @click="ShowEditOrViewDialog('edit')">修改</el-button>
+          <el-button v-hasPermi="['{ModelTypeName}/Enable']" type="info" icon="el-icon-video-pause" size="small" @click="setEnable('0')">禁用</el-button>
+          <el-button v-hasPermi="['{ModelTypeName}/Enable']" type="success" icon="el-icon-video-play" size="small" @click="setEnable('1')">啟用</el-button>
+          <el-button v-hasPermi="['{ModelTypeName}/DeleteSoft']" type="warning" icon="el-icon-delete" size="small" @click="deleteSoft('0')">軟刪除</el-button>
+          <el-button v-hasPermi="['{ModelTypeName}/Delete']" type="danger" icon="el-icon-delete" size="small" @click="deletePhysics()">刪除</el-button>
+          <el-button type="default" icon="el-icon-refresh" size="small" @click="loadTableData()">刷新</el-button>
+        </el-button-group>
+      </div>
+      <el-table
+        ref="gridtable"
+        v-loading="tableloading"
+        :data="tableData"
+        border
+        stripe
+        highlight-current-row
+        style="width: 100%"
+        :default-sort="{prop: 'SortCode', order: 'ascending'}"
+        @select="handleSelectChange"
+        @select-all="handleSelectAllChange"
+        @sort-change="handleSortChange"
+      >
+        <el-table-column type="selection" width="30" />
+        {VueViewListContent}
+      </el-table>
+      <div class="pagination-container">
+        <el-pagination
+          background
+          :current-page="pagination.currentPage"
+          :page-sizes="[5,10,20,50,100, 200, 300, 400]"
+          :page-size="pagination.pagesize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="pagination.pageTotal"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        />
+      </div>
+    </el-card>
+    <el-dialog ref="dialogEditForm" v-el-drag-dialog :title="editFormTitle+'{ModelTypeDesc}'" :visible.sync="dialogEditFormVisible"  width="660px" append-to-body>
+      <el-form ref="editFrom" :model="editFrom" :rules="rules">
+        {VueViewFromContent}
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="saveEditForm()">確 定</el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+
+import { get{ModelTypeName}ListWithPager, get{ModelTypeName}Detail,
+  save{ModelTypeName}, set{ModelTypeName}Enable, deleteSoft{ModelTypeName},
+  delete{ModelTypeName} } from '@/api/{fileClassName}/{ModelTypeNameToLower}'
+
+import elDragDialog from '@/directive/el-drag-dialog' // 彈窗可移動
+export default {
+  name: '{ModelTypeName}',//需與菜單的功能編碼一致
+  directives: { elDragDialog },
+  data() {
+    return {
+      searchform: {
+        keywords: ''
+      },
+      tableData: [],
+      tableloading: true,
+      pagination: {
+        currentPage: 1,
+        pagesize: 20,
+        pageTotal: 0
+      },
+      sortableData: {
+        order: 'desc',
+        sort: 'CreatorTime'
+      },
+      dialogEditFormVisible: false,
+      editFormTitle: '',
+      editFrom: {},
+      rules: {
+        {VueViewEditFromRuleContent}
+      },
+      formLabelWidth: '80px',
+      currentId: '', // 當前操作對象的ID值，主要用于修改
+      currentSelected: []
+    }
+  },
+  created() {
+    this.pagination.currentPage = 1
+    this.InitDictItem()
+    this.loadTableData()
+  },
+  methods: {
+    /**
+     * 初始化數據
+     */
+    InitDictItem() {
+    },
+    
+    // 取消按鈕
+    cancel () {
+      this.dialogEditFormVisible = false
+      this.reset()
+    },
+    // 表單重置
+    reset () {
+      this.editFrom = {
+        {VueViewEditFromContent}        
+        //需個性化處理內容
+      }
+      this.resetForm('editFrom')
+    },
+    /**
+     * 加載頁面table數據
+     */
+    loadTableData: function() {
+      this.tableloading = true
+      var seachdata = {
+        CurrenetPageIndex: this.pagination.currentPage,
+        PageSize: this.pagination.pagesize,
+        Keywords: this.searchform.keywords,
+        Order: this.sortableData.order,
+        Sort: this.sortableData.sort
+      }
+      get{ModelTypeName}ListWithPager(seachdata).then(res => {
+        this.tableData = res.ResData.Items
+        this.pagination.pageTotal = res.ResData.TotalItems
+        this.tableloading = false
+      })
+    },
+    /**
+     * 點擊查詢
+     */
+    handleSearch: function() {
+      this.pagination.currentPage = 1
+      this.loadTableData()
+    },
+
+    /**
+     * 新增、修改或查看明細信息（綁定顯示數據）     *
+     */
+    ShowEditOrViewDialog: function(view) {
+      this.reset()
+      if (view !== undefined) {
+        if (this.currentSelected.length > 1 || this.currentSelected.length === 0) {
+          this.$alert('請選擇一條數據進行編輯/修改', '提示')
+        } else {
+          this.currentId = this.currentSelected[0].Id
+          this.editFormTitle = '編輯'
+          this.dialogEditFormVisible = true
+          this.bindEditInfo()
+        }
+      } else {
+        this.editFormTitle = '新增'
+        this.currentId = ''
+        this.dialogEditFormVisible = true
+      }
+    },
+    bindEditInfo: function() {
+      get{ModelTypeName}Detail(this.currentId).then(res => {
+        this.editFrom = res.ResData
+        //需個性化處理內容
+
+      })
+    },
+    /**
+     * 新增/修改保存
+     */
+    saveEditForm() {
+      this.$refs['editFrom'].validate((valid) => {
+        if (valid) {
+          const data = {
+           {VueViewSaveBindContent}
+            'Id': this.currentId
+          }
+          
+          var url = '{ModelTypeName}/Insert'
+          if (this.currentId !== '') {
+            url = '{ModelTypeName}/Update'
+          }
+          save{ModelTypeName}(data,url).then(res => {
+            if (res.Success) {
+              this.$message({
+                message: '恭喜你，操作成功',
+                type: 'success'
+              })
+              this.dialogEditFormVisible = false
+              this.currentSelected = ''
+              this.loadTableData()
+              this.InitDictItem()
+            } else {
+              this.$message({
+                message: res.ErrMsg,
+                type: 'error'
+              })
+            }
+          })
+        } else {
+          return false
+        }
+      })
+    },
+    setEnable: function(val) {
+      if (this.currentSelected.length === 0) {
+        this.$alert('請先選擇要操作的數據', '提示')
+        return false
+      } else {
+        var currentIds = []
+        this.currentSelected.forEach(element => {
+          currentIds.push(element.Id)
+        })
+        const data = {
+          Ids: currentIds,
+          Flag: val
+        }
+        set{ModelTypeName}Enable(data).then(res => {
+          if (res.Success) {
+            this.$message({
+              message: '恭喜你，操作成功',
+              type: 'success'
+            })
+            this.currentSelected = ''
+            this.loadTableData()
+          } else {
+            this.$message({
+              message: res.ErrMsg,
+              type: 'error'
+            })
+          }
+        })
+      }
+    },
+    deleteSoft: function(val) {
+      if (this.currentSelected.length === 0) {
+        this.$alert('請先選擇要操作的數據', '提示')
+        return false
+      } else {
+       const that = this
+       this.$confirm('是否確認刪除所選的數據項?', '警告', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(function () {
+          var currentIds = []
+          that.currentSelected.forEach(element => {
+            currentIds.push(element.Id)
+          })
+          const data = {
+            Ids: currentIds,
+            Flag: val
+          }
+          return  deleteSoft{ModelTypeName}(data)
+        }).then(res => {
+          if (res.Success) {
+            that.$message({
+              message: '恭喜你，刪除成功',
+              type: 'success'
+            })
+            that.currentSelected = ''
+            that.loadTableData()
+          } else {
+            this.$message({
+              message: res.ErrMsg,
+              type: 'error'
+            })
+          }
+        })
+      }
+    },
+    deletePhysics: function() {
+      if (this.currentSelected.length === 0) {
+        this.$alert('請先選擇要操作的數據', '提示')
+        return false
+      } else {
+       const that = this
+        this.$confirm('是否確認刪除所選的數據項?', '警告', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(function () {
+          var currentIds = []
+          that.currentSelected.forEach(element => {
+            currentIds.push(element.Id)
+          })
+          const data = {
+            Ids: currentIds
+          }
+          return  delete{ModelTypeName}(data)
+        }).then(res => {
+          if (res.Success) {
+            that.$message({
+              message: '恭喜你，刪除成功',
+              type: 'success'
+            })
+            that.currentSelected = ''
+            that.loadTableData()
+          } else {
+            this.$message({
+              message: res.ErrMsg,
+              type: 'error'
+            })
+          }
+        })
+      }
+    },
+    /**
+     * 當表格的排序條件發生變化的時候會觸發該事件
+     */
+    handleSortChange: function(column) {
+      this.sortableData.sort = column.prop
+      if (column.order === 'ascending') {
+        this.sortableData.order = 'asc'
+      } else {
+        this.sortableData.order = 'desc'
+      }
+      this.loadTableData()
+    },
+    /**
+     * 當用戶手動勾選checkbox數據行事件
+     */
+    handleSelectChange: function(selection, row) {
+      this.currentSelected = selection
+    },
+    /**
+     * 當用戶手動勾選全選checkbox事件
+     */
+    handleSelectAllChange: function(selection) {
+      this.currentSelected = selection
+    },
+    /**
+     * 選擇每頁顯示數量
+     */
+    handleSizeChange(val) {
+      this.pagination.pagesize = val
+      this.pagination.currentPage = 1
+      this.loadTableData()
+    },
+    /**
+     * 選擇當頁面
+     */
+    handleCurrentChange(val) {
+      this.pagination.currentPage = val
+      this.loadTableData()
+    }
+  }
+}
+</script>
+
+<style>
+</style>

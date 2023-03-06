@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Company>上海越邦網絡科技有限公司</Company>
+    <Authors>Yuebon</Authors>
+    <Product>YuebonNetCore開發框架定時處理庫</Product>
+    <Description>YuebonNetCore開發框架定時處理庫</Description>
+    <Copyright>上海越邦網絡科技有限公司</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2</Version>
+    <RootNamespace>Yuebon.Quartz.Jobs</RootNamespace>
+    <AssemblyName>Yuebon.Quartz.Jobs</AssemblyName>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="SysLogJob.cs~RFd4cc03.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.3" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Quartz" Version="3.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yuebon.NetCore\Yuebon.Chaochi.Core\Yuebon.Chaochi.Core.csproj" />
+    <ProjectReference Include="..\Yuebon.Email.Core\Yuebon.Email.Core.csproj" />
+    <ProjectReference Include="..\Yuebon.Messages\Yuebon.Messages.Core\Yuebon.Messages.Core.csproj" />
+    <ProjectReference Include="..\Yuebon.NetCore\Yuebon.Security.Core\Yuebon.Security.Core.csproj" />
+  </ItemGroup>
+
+</Project>

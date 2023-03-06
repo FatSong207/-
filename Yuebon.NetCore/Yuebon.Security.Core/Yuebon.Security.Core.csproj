@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net5.0</TargetFramework>
+		<ApplicationIcon />
+		<StartupObject />
+		<RootNamespace>Yuebon.Security</RootNamespace>
+		<Company>上海越邦網絡科技有限公司</Company>
+		<Copyright>上海越邦網絡科技有限公司 版權所有</Copyright>
+		<Product>YuebonNetCore開發框架權限管理系統類庫</Product>
+		<Description>YuebonNetCore開發框架權限管理系統類庫</Description>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>1.3.2.32</Version>
+		<PackageReleaseNotes>更新最新公共庫</PackageReleaseNotes>
+		<Authors>Yuebon</Authors>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageIconUrl></PackageIconUrl>
+		<PackageProjectUrl>https://gitee.com/yuebon/YuebonNetCore</PackageProjectUrl>
+		<PackageLicenseExpression></PackageLicenseExpression>
+		<RepositoryUrl>https://gitee.com/yuebon/YuebonNetCore</RepositoryUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageIcon>logo.png</PackageIcon>
+		<AssemblyVersion>1.3.2.32</AssemblyVersion>
+		<FileVersion>1.3.2.32</FileVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath></OutputPath>
+		<DocumentationFile></DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>bin\Release\</OutputPath>
+		<DocumentationFile>bin\Release\Yuebon.Security.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Application\APPApp.cs" />
+		<Compile Remove="Application\FunctionApp.cs" />
+		<Compile Remove="Application\ItemsApp.cs" />
+		<Compile Remove="Application\LogApp.cs" />
+		<Compile Remove="Application\RoleApp.cs" />
+		<Compile Remove="Application\RoleAuthorizeApp.cs" />
+		<Compile Remove="Application\RoleDataApp.cs" />
+		<Compile Remove="Dtos\FunctionInputDto.cs" />
+		<Compile Remove="Dtos\FunctionOutputDto.cs" />
+		<Compile Remove="Dtos\TaskJobsLogInputDto.cs" />
+		<Compile Remove="Dtos\TaskJobsLogOutputDto.cs" />
+		<Compile Remove="Dtos\TaskJobsLogVueTimelineOutputDto.cs" />
+		<Compile Remove="Dtos\TaskManagerInputDto.cs" />
+		<Compile Remove="Dtos\TaskManagerOutputDto.cs" />
+		<Compile Remove="Dtos\TenantInputDto.cs" />
+		<Compile Remove="Dtos\TenantOutputDto.cs" />
+		<Compile Remove="IRepositories\IFunctionRepository.cs" />
+		<Compile Remove="IRepositories\ITaskJobsLogRepository.cs" />
+		<Compile Remove="IRepositories\ITaskManagerRepository.cs" />
+		<Compile Remove="IRepositories\ITenantRepository.cs" />
+		<Compile Remove="IServices\IFunctionService.cs" />
+		<Compile Remove="IServices\ITaskJobsLogService.cs" />
+		<Compile Remove="IServices\ITaskManagerService.cs" />
+		<Compile Remove="IServices\ITenantService.cs" />
+		<Compile Remove="Models\Function.cs" />
+		<Compile Remove="Models\TaskJobsLog.cs" />
+		<Compile Remove="Models\TaskManager.cs" />
+		<Compile Remove="Models\Tenant.cs" />
+		<Compile Remove="Repositories\FunctionRepository.cs" />
+		<Compile Remove="Repositories\TaskJobsLogRepository.cs" />
+		<Compile Remove="Repositories\TaskManagerRepository.cs" />
+		<Compile Remove="SecurityDBContent.cs" />
+		<Compile Remove="Services\FunctionService.cs" />
+		<Compile Remove="Services\TaskJobsLogService.cs" />
+		<Compile Remove="Services\TaskManagerService.cs" />
+		<Compile Remove="Services\TenantService.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\..\logo.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="DotNetCore.NPOI" Version="1.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Yuebon.Commons\Yuebon.Commons.csproj" />
+	</ItemGroup>
+
+</Project>

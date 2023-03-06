@@ -1,0 +1,14 @@
+﻿using System;
+using Yuebon.Commons.IServices;
+using {DtosNamespace};
+using {ModelsNamespace};
+
+namespace {IServicsNamespace}
+{
+    /// <summary>
+    /// 定義{TableNameDesc}服務接口
+    /// </summary>
+    public interface I{ModelTypeName}Service:IService<{ModelTypeName},{ModelTypeName}OutputDto, {KeyTypeName}>
+    {
+    }
+}

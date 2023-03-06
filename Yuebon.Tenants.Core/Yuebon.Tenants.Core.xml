@@ -1,0 +1,281 @@
+﻿<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yuebon.Tenants.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Yuebon.Tenants.Dtos.TenantInputDto">
+            <summary>
+            租戶輸入對象模型
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.Id">
+            <summary>
+            設置或獲取 
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.TenantName">
+            <summary>
+            設置或獲取租戶名稱
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.CompanyName">
+            <summary>
+            設置或獲取公司名稱
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.HostDomain">
+            <summary>
+            設置或獲取訪問域名
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.LinkMan">
+            <summary>
+            設置或獲取聯系人
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.Telphone">
+            <summary>
+            設置或獲取聯系電話
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.DataSource">
+            <summary>
+            設置或獲取數據源，分庫使用
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.Description">
+            <summary>
+            設置或獲取租戶介紹
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantInputDto.EnabledMark">
+            <summary>
+            設置或獲取是否可用
+            </summary>
+        </member>
+        <member name="T:Yuebon.Tenants.Dtos.TenantOutputDto">
+            <summary>
+            租戶輸出對象模型
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.Id">
+            <summary>
+            設置或獲取 
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.TenantName">
+            <summary>
+            設置或獲取租戶名稱
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.CompanyName">
+            <summary>
+            設置或獲取公司名稱
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.HostDomain">
+            <summary>
+            設置或獲取訪問域名
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.LinkMan">
+            <summary>
+            設置或獲取聯系人
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.Telphone">
+            <summary>
+            設置或獲取聯系電話
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.DataSource">
+            <summary>
+            設置或獲取數據源，分庫使用
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.Description">
+            <summary>
+            設置或獲取租戶介紹
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.EnabledMark">
+            <summary>
+            設置或獲取是否可用
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.DeleteMark">
+            <summary>
+            設置或獲取刪除標記
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.CreatorTime">
+            <summary>
+            設置或獲取創建時間
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.CreatorUserId">
+            <summary>
+            設置或獲取創建人
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.CompanyId">
+            <summary>
+            設置或獲取創建人組織
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.DeptId">
+            <summary>
+            設置或獲取部門
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.LastModifyTime">
+            <summary>
+            設置或獲取修改時間
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.LastModifyUserId">
+            <summary>
+            設置或獲取修改人
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.DeleteTime">
+            <summary>
+            設置或獲取刪除時間
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Dtos.TenantOutputDto.DeleteUserId">
+            <summary>
+            設置或獲取刪除人
+            </summary>
+        </member>
+        <member name="T:Yuebon.Tenants.IRepositories.ITenantRepository">
+            <summary>
+            定義租戶倉儲接口
+            </summary>
+        </member>
+        <member name="T:Yuebon.Tenants.IServices.ITenantService">
+            <summary>
+            定義租戶服務接口
+            </summary>
+        </member>
+        <member name="T:Yuebon.Tenants.Models.Tenant">
+            <summary>
+            租戶，數據實體對象
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.Id">
+            <summary>
+            設置或獲取 
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.TenantName">
+            <summary>
+            設置或獲取租戶名稱
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.CompanyName">
+            <summary>
+            設置或獲取公司名稱
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.HostDomain">
+            <summary>
+            設置或獲取訪問域名
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.LinkMan">
+            <summary>
+            設置或獲取聯系人
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.Telphone">
+            <summary>
+            設置或獲取聯系電話
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.DataSource">
+            <summary>
+            設置或獲取數據源，分庫使用
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.Description">
+            <summary>
+            設置或獲取租戶介紹
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.EnabledMark">
+            <summary>
+            設置或獲取是否可用
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.DeleteMark">
+            <summary>
+            設置或獲取刪除標記
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.CreatorTime">
+            <summary>
+            設置或獲取創建時間
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.CreatorUserId">
+            <summary>
+            設置或獲取創建人
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.CompanyId">
+            <summary>
+            設置或獲取創建人組織
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.DeptId">
+            <summary>
+            設置或獲取部門
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.LastModifyTime">
+            <summary>
+            設置或獲取修改時間
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.LastModifyUserId">
+            <summary>
+            設置或獲取修改人
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.DeleteTime">
+            <summary>
+            設置或獲取刪除時間
+            </summary>
+        </member>
+        <member name="P:Yuebon.Tenants.Models.Tenant.DeleteUserId">
+            <summary>
+            設置或獲取刪除人
+            </summary>
+        </member>
+        <member name="T:Yuebon.Tenants.Repositories.TenantRepository">
+            <summary>
+            租戶倉儲接口的實現
+            </summary>
+        </member>
+        <member name="M:Yuebon.Tenants.Repositories.TenantRepository.#ctor(Yuebon.Commons.IDbContext.IDbContextCore)">
+            <summary>
+            注入EF上下文
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Yuebon.Tenants.Services.TenantService">
+            <summary>
+            租戶服務接口實現
+            </summary>
+        </member>
+        <member name="M:Yuebon.Tenants.Services.TenantService.FindWithPagerAsync(Yuebon.Commons.Dtos.SearchInputDto{Yuebon.Tenants.Models.Tenant})">
+            <summary>
+            根據條件查詢數據庫,并返回對象集合(用于分頁數據顯示)
+            </summary>
+            <param name="search">查詢的條件</param>
+            <returns>指定對象的集合</returns>
+        </member>
+    </members>
+</doc>

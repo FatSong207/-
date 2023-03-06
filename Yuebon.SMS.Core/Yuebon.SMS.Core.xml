@@ -1,0 +1,73 @@
+﻿<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yuebon.SMS.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Yuebon.SMS.AliYun.AliYunSMS">
+            <summary>
+            阿里云短信接口
+            </summary>
+        </member>
+        <member name="M:Yuebon.SMS.AliYun.AliYunSMS.Send(System.String[],System.String,System.String,System.String@,System.String,System.String)">
+            <summary>
+            群發
+            </summary>
+            <param name="phoneNumbers">必填:待發送手機號。支持JSON格式的批量調用，批量上限為100個手機號碼</param>
+            <param name="TemplateCode">必填:短信模板</param>
+            <param name="message">必填:模板中的變量替換JSON串,如模板內容為"親愛的${name},您的驗證碼為${code}"時,此處的值為 "{\"name\":\"Tom\"， \"code\":\"123\"}"</param>
+            <param name="returnMsg"></param>
+            <param name="OutId">可選:outId為提供給業務方擴展字段,最終在短信回執消息中將此值帶回給調用者</param>
+            <param name="speed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yuebon.SMS.AliYun.AliYunSMS.Send(System.String,System.String,System.String,System.String@,System.String,System.String)">
+            <summary>
+            短信發送
+            </summary>
+            <param name="cellPhone">必填:待發送手機號。支持以逗號分隔的形式進行批量調用，批量上限為1000個手機號碼,批量調用相對于單條調用及時性稍有延遲,驗證碼類型的短信推薦使用單條調用的方式，發送國際/港澳臺消息時，接收號碼格式為00+國際區號+號碼，如“0085200000000”</param>
+            <param name="templateCode">模板code</param>
+            <param name="OutId">可選:outId為提供給業務方擴展字段,最終在短信回執消息中將此值帶回給調用者</param>
+            <param name="message">可選:模板中的變量替換JSON串,如模板內容為"親愛的${name},您的驗證碼為${code}"時,此處的值為 "{\"name\":\"Tom\"， \"code\":\"123\"}"</param>
+            <param name="returnMsg"></param>
+            <param name="speed"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Yuebon.SMS.AliYun.AliYunSMS.Appkey">
+            <summary>
+            Appkey 應用Id
+            </summary>
+        </member>
+        <member name="P:Yuebon.SMS.AliYun.AliYunSMS.Appsecret">
+            <summary>
+            Appsecret應用密鑰
+            </summary>
+        </member>
+        <member name="P:Yuebon.SMS.AliYun.AliYunSMS.SignName">
+            <summary>
+            簽名
+            </summary>
+        </member>
+        <member name="P:Yuebon.SMS.AliYun.SMSResult.BizId">
+            <summary>
+            發送回執ID
+            </summary>
+        </member>
+        <member name="P:Yuebon.SMS.AliYun.SMSResult.Code">
+            <summary>
+            請求狀態碼。返回OK代表請求成功。
+            其他錯誤碼詳見錯誤碼列表。
+            </summary>
+        </member>
+        <member name="P:Yuebon.SMS.AliYun.SMSResult.Message">
+            <summary>
+            狀態碼的描述。
+            </summary>
+        </member>
+        <member name="P:Yuebon.SMS.AliYun.SMSResult.RequestId">
+            <summary>
+            請求ID。
+            </summary>
+        </member>
+    </members>
+</doc>

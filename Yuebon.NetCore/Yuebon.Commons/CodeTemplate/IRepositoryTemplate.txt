@@ -1,0 +1,13 @@
+﻿using System;
+using Yuebon.Commons.IRepositories;
+using {ModelsNamespace};
+
+namespace {IRepositoriesNamespace}
+{
+    /// <summary>
+    /// 定義{TableNameDesc}倉儲接口
+    /// </summary>
+    public interface I{ModelTypeName}Repository:IRepository<{ModelTypeName}, {KeyTypeName}>
+    {
+    }
+}
